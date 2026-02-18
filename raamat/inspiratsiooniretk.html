@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="et">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inspiratsiooniretk.ee</title>
+    <meta
+      name="description"
+      content="Inspiratsiooniretke raamatu allalaadimise leht: audiobook, Kindle ja PDF."
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-sky-mist: #e9f1f4;
+        --color-sand-light: #efe6d5;
+        --color-sand-deep: #cfbda0;
+        --color-forest-ink: #263126;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-sky-mist text-forest-ink [font-family:'Manrope',sans-serif]">
+    <div class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,255,255,0.8),transparent_40%),radial-gradient(circle_at_90%_10%,rgba(207,189,160,0.35),transparent_35%),linear-gradient(180deg,#e9f1f4_0%,#efe6d5_100%)]"></div>
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent_0%,rgba(207,189,160,0.28)_100%)]"></div>
+
+      <main class="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-6 py-14 sm:px-10">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <section class="order-1 flex justify-center lg:justify-start">
+            <figure class="relative">
+              <img
+                src="/assets/images/esikaas.png"
+                alt="Inspiratsiooniretke raamatu esikaas"
+              />
+            </figure>
+          </section>
+
+          <section class="order-2 space-y-8">
+            <p class="inline-flex items-center rounded-full border border-white/60 bg-white/65 px-4 py-1 text-sm font-medium backdrop-blur-sm">
+              Inspiratsiooniretk.ee esitleb
+            </p>
+
+            <div class="space-y-4">
+              <h1 class="text-4xl font-semibold leading-tight sm:text-5xl [font-family:'Playfair_Display',serif]">
+                Inspiratsiooniretk
+              </h1>
+              <p class="max-w-xl text-base leading-relaxed text-forest-ink/80 sm:text-lg">
+                Laadi alla inspiratsiooniretke reisiraamat Sinule sobivas formaadis.
+              </p>
+            </div>
+
+            <div class="grid gap-3 sm:max-w-sm">
+              <a
+                href="/assets/formaadid/inspiratsiooniretk-audioraamat.mp3"
+                download="inspiratsiooniretk-audioraamat.mp3"
+                class="inline-flex items-center justify-center rounded-xl border border-forest-ink/15 bg-white/80 px-5 py-3 text-sm font-semibold text-forest-ink shadow-sm transition hover:bg-white"
+              >
+                Laadi alla audioraamat
+              </a>
+              <a
+                href="/assets/formaadid/inspiratsiooniretk-kindle.mobi"
+                download="inspiratsiooniretk-kindle.mobi"
+                class="inline-flex items-center justify-center rounded-xl border border-forest-ink/15 bg-white/80 px-5 py-3 text-sm font-semibold text-forest-ink shadow-sm transition hover:bg-white"
+              >
+                Laadi alla Kindle
+              </a>
+              <a
+                href="/assets/formaadid/inspiratsiooniretk.pdf"
+                download="inspiratsiooniretk.pdf"
+                class="inline-flex items-center justify-center rounded-xl border border-forest-ink/15 bg-white/80 px-5 py-3 text-sm font-semibold text-forest-ink shadow-sm transition hover:bg-white"
+              >
+                Laadi alla PDF
+              </a>
+            </div>
+
+            <p class="text-sm text-forest-ink/60">Raamatu allalaadimine on tasuta. </p>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

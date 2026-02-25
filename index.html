@@ -1,59 +1,1007 @@
 <!doctype html>
 <html lang="et">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Inspiratsioonirekt.ee</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content="Inspiratsioonirekt.ee – Inspireerivaid inspiratsioone." />
-    <meta name="author" content="Martin Simmermann" />
-    <meta name="robots" content="index, follow" />
+  <title>Inspiratsioonirekt.ee</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Simmermann – AI ja õiguslahendused" />
-    <meta property="og:description" content="AI, automatiseerimine ja praktilised digilahendused." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://simmermann.com" />
+  <meta name="description" content="Inspiratsioonirekt.ee – Inspireerivaid inspiratsioone." />
+  <meta name="author" content="Martin Simmermann" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  </head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Simmermann – AI ja õiguslahendused" />
+  <meta property="og:description" content="AI, automatiseerimine ja praktilised digilahendused." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simmermann.com" />
 
-  <body class="bg-background text-foreground">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
-    <div class="max-w-3xl flex flex-col mx-auto min-h-screen">
+  <style>
+    .journey-map-section {
+      background: linear-gradient(180deg, #fff 0%, #fff 100%);
+    }
 
-      <!-- HEADER -->
-      <header class="mb-auto flex justify-center w-full py-6">
-        <nav>
-          <a class="text-xl font-semibold sm:text-3xl text-foreground" href="/">
-            inspiratsioonirekt.ee
-          </a>
-        </nav>
-      </header>
+    #journey-map-wrap {
+      width: 100%;
+      position: relative;
+      background: #0d1f3c;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 38px rgba(13, 31, 60, 0.16);
+    }
 
-      <!-- MAIN -->
-      <main class="text-center py-16 px-6">
-        <h1 class="text-5xl sm:text-7xl font-bold">
-          Hello!
-        </h1>
-        <p class="mt-6 text-muted-foreground-2 text-lg">
-          This is a production test page.
-        </p>
-      </main>
+    #journey-map {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-      <!-- FOOTER -->
-      <footer class="mt-auto text-center py-8">
-        <p class="text-sm text-muted-foreground-1">
-          © 2026 Inspiratsioonirekt.ee. Kõik õigused kaitstud.
-        </p>
-      </footer>
+    .jm-sphere {
+      fill: #0d1f3c;
+    }
+
+    .jm-land {
+      fill: #1a4a8a;
+      stroke: #1e5599;
+      stroke-width: 0.3;
+    }
+
+    .jm-border {
+      fill: none;
+      stroke: #163d74;
+      stroke-width: 0.4;
+    }
+
+    .jm-route-land {
+      fill: none;
+      stroke: #4ade80;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .jm-route-sea {
+      fill: none;
+      stroke: #7dd3fc;
+      stroke-width: 2;
+      stroke-dasharray: 7 9;
+      stroke-linecap: round;
+    }
+
+    .jm-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      fill: #f0f4ff;
+      letter-spacing: 0.01em;
+    }
+
+    .jm-card-sub {
+      font-size: 11px;
+      fill: #7aa8d8;
+      font-weight: 400;
+    }
+
+    #journey-map-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0d1f3c;
+      color: #4a7ab0;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+
+<body class="">
+
+  <main id="content">
+
+    <!-- Hero -->
+    <div class="relative">
+
+      <!-- Responsive Picture -->
+      <picture class="absolute inset-0 z-0 w-full h-full">
+        <!-- Desktop -->
+        <source media="(min-width: 1280px)" srcset="./public/assets/pildid/hero/kaart.png">
+        <!-- Tablet -->
+        <source media="(min-width: 768px)" srcset="./public/assets/pildid/hero/kaart.png">
+        <!-- Mobile fallback -->
+        <img src="./public/assets/pildid/hero/kaart.png" alt="Hero taust" class="w-full h-full object-cover"
+          loading="eager" style="opacity: 0.9;">
+      </picture>
+
+      <div class="relative">
+
+        <!-- Menu -->
+
+        <!-- ========== HEADER ========== -->
+        <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
+          <nav class="relative max-w-6xl w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 py-2 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center gap-x-1">
+              <a class="flex-none focus:outline-none flex items-center gap-2" href="#" aria-label="Inspiratsiooniretk">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bike-icon lucide-bike">
+                  <circle cx="18.5" cy="17.5" r="3.5"/>
+                  <circle cx="5.5" cy="17.5" r="3.5"/>
+                  <circle cx="15" cy="5" r="1"/>
+                  <path d="M12 17.5V14l-3-3 4-3 2 3h2"/>
+                </svg>
+                <span class="font-semibold text-base text-gray-900">Inspiratsiooniretk</span>
+              </a>
+
+              <!-- Collapse Button -->
+              <button type="button"
+                class="hs-collapse-toggle md:hidden relative size-9 flex justify-center items-center font-medium text-sm rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                id="hs-header-base-collapse" aria-expanded="false" aria-controls="hs-header-base"
+                aria-label="Toggle navigation" data-hs-collapse="#hs-header-base">
+                <svg class="hs-collapse-open:hidden size-4" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="3" x2="21" y1="6" y2="6" />
+                  <line x1="3" x2="21" y1="12" y2="12" />
+                  <line x1="3" x2="21" y1="18" y2="18" />
+                </svg>
+                <svg class="hs-collapse-open:block shrink-0 hidden size-4" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <!-- End Collapse Button -->
+            </div>
+
+            <!-- Collapse -->
+            <div id="hs-header-base"
+              class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block"
+              aria-labelledby="hs-header-base-collapse">
+              <div
+                class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+                <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center gap-0.5 md:gap-1">
+                  <div class="grow">
+                    <div class="flex flex-col md:flex-row md:justify-end md:items-center gap-0.5 md:gap-1">
+
+                      <!-- LINK - Avaleht (active) -->
+                      <a class="p-2 flex items-center text-sm text-orange-500 font-semibold hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg text-gray-800"
+                        href="#">
+                        <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 12L12 3l9 9"/>
+                          <path d="M9 21V9h6v12"/>
+                        </svg>
+                        Avaleht
+                      </a>
+
+                      <!-- // LINK - Meeskond -->
+                      <a class="p-2 flex items-center text-sm text-gray-800 hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg"
+                        href="#meeskond">
+                        <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="7" r="4"/>
+                          <path d="M5.5 21a2.14 2.14 0 0 1 2.36-2.13a17.94 17.94 0 0 1 8.28 0A2.14 2.14 0 0 1 18.5 21"/>
+                        </svg>
+                        Meeskond
+                      </a>
+
+                      <!-- // LINK - Pildid -->
+                      <a class="p-2 flex items-center text-sm text-gray-800 hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg"
+                        href="#pildid">
+                        <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="3" width="18" height="18" rx="2" />
+                          <circle cx="8.5" cy="8.5" r="1.5" />
+                          <path d="m21 15-5-5L5 21"/>
+                        </svg>
+                        Pildid
+                      </a>
+
+                      <!-- // LINK - Meedia -->
+                      <a class="p-2 flex items-center text-sm text-gray-800 hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg"
+                        href="#meedia">
+                        <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="2" y="4" width="20" height="16" rx="2"/>
+                          <path d="m17 10-5 3-5-3"/>
+                        </svg>
+                        Meedia
+                      </a>
+
+                      <!-- // LINK - Toetajad -->
+                      <a class="p-2 flex items-center text-sm text-gray-800 hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg"
+                        href="#toetajad">
+                        <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="8.5" cy="8.5" r="5.5"/>
+                          <circle cx="17.5" cy="17.5" r="5.5"/>
+                        </svg>
+                        Toetajad
+                      </a>
+
+                      <a class="p-2 flex items-center text-sm text-gray-800 hover:text-orange-500 focus:outline-hidden focus:text-orange-500 hover:bg-gray-100 rounded-lg"
+                      href="#raamat">
+                      <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8.5" cy="8.5" r="5.5"/>
+                        <circle cx="17.5" cy="17.5" r="5.5"/>
+                      </svg>
+                      Raamat
+                    </a>
+                    </div>
+                  </div>
+
+                  <div class="my-2 md:my-0 md:mx-2">
+                    <div class="w-full h-px md:w-px md:h-4 bg-gray-100 md:bg-gray-300"></div>
+                  </div>
+
+                  <!-- Button Group -->
+                  <div class="flex flex-wrap items-center">
+                    <div>
+                      <a class="flex flex-col justify-center items-center size-7 md:size-9 rounded-full text-sm text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:text-neutral-500 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                        href="https://facebook.com/alimendid.ee" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-facebook shrink-0 size-4">
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                        <span class="sr-only">Facebook</span>
+                      </a>
+                    </div>
+
+                    <div class="pe-2">
+                      <a class="flex flex-col justify-center items-center size-7 md:size-9 rounded-full text-sm text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:text-neutral-500 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                        href="https://www.instagram.com/alimendid.ee" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-instagram shrink-0 size-4">
+                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                        <span class="sr-only">Instagram</span>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- End Button Group -->
+                </div>
+              </div>
+            </div>
+            <!-- End Collapse -->
+          </nav>
+        </header>
+        <!-- ========== END HEADER ========== -->
+        <div class="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 lg:py-6 mx-auto">
+          <!-- Grid -->
+          <div class="flex justify-center items-center">
+
+            <!-- Keskmine osa -->
+            <div class="text-center max-w-3xl mx-auto">
+
+              <!-- Pealkiri -->
+              <div class="mt-4 md:mt-2 lg:mt-2 mb-8">
+
+                <!-- Title -->
+                <div class="mt-5">
+                  <h1 class="block font-semibold text-gray-800 text-4xl md:text-5xl lg:text-6xl"
+                    style="line-height: 1.2;">
+                    Inspiratsiooniretk
+                  </h1>
+                </div>
+
+                <div class="mt-5 mx-auto max-w-xl">
+                  <p class="text-xl md:text-2xl lg:text-2xl 
+                  text-gray-600">
+                    Reis jalgrattaga ümber maailma
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <!-- End Grid -->
+        </div>
+      </div>
+    </div>
+    <!-- End Hero -->
+
+    <!-- SECTION: Kaart -->
+    <section class="journey-map-section px-4 pb-2 sm:px-6 sm:pt-10 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div id="journey-map-wrap">
+          <div id="journey-map-loading">Laen kaarti...</div>
+          <svg id="journey-map" aria-label="Jalgrattamatka marsruut maailmakaardil"></svg>
+        </div>
+      </div>
+    </section>
+    <!-- !SECTION: Kaart -->
+
+
+    <!-- SECTION: Numbrid -->
+    <div class="pt-20" style="background: linear-gradient(180deg, #fff 10%, #fff 100%)">
+      <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto rounded-xl transition duration-300">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-2 max-w-6xl mx-auto text-center">
+          <div>
+            <p class="text-5xl font-semibold" style="color: #1A4A8A;">485</p>
+            <p class="text-xl mt-1 text-gray-500">päevaga edukalt lõpetatud</p>
+          </div>
+          <div class="mb-4 sm:mb-0">
+            <p class="text-5xl font-semibold" style="color: #1A4A8A;">31 000</p>
+            <p class="text-xl mt-1 text-gray-500">kilomeetrit jalgrattaga</p>
+          </div>
+          <div class="mb-4 sm:mb-0">
+            <p class="text-5xl font-semibold" style="color: #1A4A8A;">10 000</p>
+            <p class="text-xl mt-1 text-gray-500">kilomeetrit purjekaga</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION: Numbrid -->
+
+
+    <!-- SECTION: Meeskond -->
+    <div id="meeskond" class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto scroll-mt-24">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+        <h2 class="text-2xl font-bold md:text-4xl md:leading-tight text-foreground">Meeskond</h2>
+        <p class="mt-1 text-muted-foreground-2">Inspiratsiooniretke meeskond</p>
+      </div>
+      <!-- End Title -->
+
+      <!-- Grid -->
+      <div class="flex flex-wrap justify-center gap-12 md:gap-24">
+        <!-- LINK - Martin Öövel -->
+        <div class="flex flex-col items-center text-center">
+          <img class="rounded-xl sm:size-48 lg:size-60 mx-auto" src="./public/assets/pildid/meeskond/martinoovel.png"
+            alt="Avatar">
+          <div class="mt-2 sm:mt-4">
+            <h3 class="text-sm font-medium text-foreground sm:text-base lg:text-lg">
+              Martin Öövel
+            </h3>
+          </div>
+        </div>
+
+        <!-- LINK - Martin Simmermann -->
+        <div class="flex flex-col items-center text-center">
+          <img class="rounded-xl sm:size-48 lg:size-60 mx-auto"
+            src="./public/assets/pildid/meeskond/martinsimmermann.png" alt="Avatar">
+          <div class="mt-2 sm:mt-4">
+            <h3 class="text-sm font-medium text-foreground sm:text-base lg:text-lg">
+              Martin Simmermann
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION: Meeskond -->
+
+    <!-- SECTION: Pildid -->
+    <div id="pildid" class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto scroll-mt-24">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+        <h2 class="text-2xl font-bold md:text-4xl md:leading-tight text-foreground">Pildid</h2>
+        <p class="mt-1 text-muted-foreground-2">Inspiratsiooniretke pildid</p>
+      </div>
+      <!-- End Title -->
+
+      <!-- Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- LINK - Euroopa -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="euroopa">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/euroopa.jpg"
+              alt="Euroopa etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Euroopa
+          </h3>
+        </button>
+        <!-- LINK - Aafrika -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="aafrika">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/aafrika.png"
+              alt="Aafrika etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Aafrika
+          </h3>
+        </button>
+        <!-- LINK - Seilamine -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="seilamine">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/seilamine.jpg"
+              alt="Seilamise etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Seilamine
+          </h3>
+        </button>
+        <!-- LINK - Kariibid -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="kariibid">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/kariibid.jpg"
+              alt="Kariibide etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Kariibid
+          </h3>
+        </button>
+        <!-- LINK - Ameerika -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="ameerika">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/ameerika.jpg"
+              alt="Ameerika etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Ameerika
+          </h3>
+        </button>
+        <!-- LINK - Aasia -->
+        <button type="button"
+          class="group w-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-xl p-5 transition flex flex-col items-center text-center cursor-pointer"
+          data-gallery-stage="aasia">
+          <div class="w-full flex justify-center">
+            <img class="w-full aspect-[3/2] object-cover rounded-xl" src="./assets/pildid/etapid/aasia.png"
+              alt="Aasia etapp">
+          </div>
+          <h3 class="mt-5 text-xl text-foreground">
+            Aasia
+          </h3>
+        </button>
+      </div>
+      <!-- End Grid -->
 
     </div>
+    <!-- !SECTION: Pildid -->
 
-    <!-- Vite entry -->
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <!-- MODAL: Etapi galerii -->
+    <div id="etapi-galerii-modal"
+      class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none bg-gray-900/50"
+      role="dialog" tabindex="-1" aria-labelledby="etapi-galerii-title">
+      <div id="etapi-galerii-panel" class="transition-all sm:max-w-5xl sm:w-full m-3 sm:mx-auto">
+        <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto">
+          <div class="flex justify-between items-center py-3 px-4 border-b">
+            <h3 id="etapi-galerii-title" class="font-semibold text-lg text-gray-800">Etapi galerii</h3>
+            <button id="etapi-galerii-close" type="button"
+              class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+              aria-label="Sulge">
+              <span class="sr-only">Sulge</span>
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-4 sm:p-6">
+            <div class="relative bg-gray-100 rounded-xl overflow-hidden">
+              <img id="etapi-galerii-image" class="w-full max-h-[72vh] object-contain" src="" alt="Etapi pilt" />
+
+              <button id="etapi-galerii-prev" type="button"
+                class="absolute left-3 top-1/2 -translate-y-1/2 size-10 inline-flex justify-center items-center rounded-full bg-white/90 text-gray-800 hover:bg-white focus:outline-hidden disabled:opacity-40 disabled:pointer-events-none"
+                aria-label="Eelmine pilt">
+                <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m15 18-6-6 6-6"></path>
+                </svg>
+              </button>
+
+              <button id="etapi-galerii-next" type="button"
+                class="absolute right-3 top-1/2 -translate-y-1/2 size-10 inline-flex justify-center items-center rounded-full bg-white/90 text-gray-800 hover:bg-white focus:outline-hidden disabled:opacity-40 disabled:pointer-events-none"
+                aria-label="Järgmine pilt">
+                <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </button>
+            </div>
+
+            <p id="etapi-galerii-counter" class="text-center text-sm text-gray-500 mt-4">Laen pilte...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !MODAL: Etapi galerii -->
+
+    <!-- SECTION: Meedia -->
+    <div id="meedia" class="scroll-mt-24">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <h2 class="text-3xl md:text-4xl lg:text-4xl font-semibold md:pb-1">Meedia</h2>
+        <p class="mt-1 text-gray-600 text-lg">Inspiratsiooniretk meedias</p>
+      </div>
+      <!-- End Title -->
+      <div class="max-w-6xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10 mx-auto">
+        <!-- Card Grid: 2 rows, 4 columns each on large screens -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-2">
+          <!-- ROW 1 -->
+
+          <!-- LINK - Reporter -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://reporter.kanal2.ee/3505813/kaks-martinit-alustasid-hullu-rattaretke-umber-maakera"
+            target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Kaks Martinit alustasid hullu rattaretke ümber maakera
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/reporter.png" alt="Reporter"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - ERR -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.err.ee/407149/noored-jalgratturid-teevad-maailmale-tiiru-peale" target="_blank"
+            rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Noored jalgratturid teevad maailmale tiiru peale
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/err.png" alt="ERR"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - Postimees -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.postimees.ee/263578/sobrad-porutavad-kondijoul-umber-ilma" target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Sõbrad põrutavad kondijõul ümber ilma
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/postimees.png" alt="Postimees"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - Õhtuleht -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.ohtuleht.ee/386162" target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Kaks eestlast stardivad jalgrattaga ümberilmareisile
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/ohtuleht.png" alt="Õhtuleht"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- ROW 2 -->
+
+          <!-- LINK - Eesti Ekspress -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://ekspress.delfi.ee/artikkel/73319829/poidlakuudiga-ule-atlandi-ehk-kuidas-laeva-peale-haaletada"
+            target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Pöidlaküüdiaga üle Atlandi ookeani
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/eestiekspress.png" alt="Eesti Ekspress"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - Postimees -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.postimees.ee/624406/eesti-mehed-soitsid-ratastel-umber-maailma" target="_blank"
+            rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Eesti mehed sõitsid ratastel ümber maailma
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/postimees.png" alt="Postimees"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - TV3 -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.ohtuleht.ee/melu/450894/umbermaailmaratturid-tagasi-kodus" target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Ümbermaailmaratturid tagasi kodus
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/tv3.png" alt="Õhtuleht"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - Delfi -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://reisijuht.delfi.ee/artikkel/86146199/eesti-matkaliit-tahistab-30-juubelit-loe-mida-nende-aastakumnete-jooksul-korda-on-saadetud"
+            target="_blank" rel="noopener">
+            <div class="w-full flex flex-col items-center text-center">
+              <h3 class="italic text-lg lg:text-lg text-foreground mb-0 sm:mb-0 lg:mb-1.5 transition-colors duration-200 group-hover:text-primary group-focus:text-primary">
+                Jalgratastel ümber maailma
+              </h3>
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/meedia/delfi.png" alt="Delfi"
+                  class="py-2 sm:py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+        </div>
+        <!-- End Card Grid -->
+      </div>
+    </div>
+    <!-- !SECTION: Meedia -->
+
+    <!-- SECTION: Toetajad -->
+    <div id="toetajad" class="scroll-mt-24">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-4xl font-semibold md:pb-1">Toetajad</h2>
+        <p class="mt-1 text-gray-600 text-lg">Inspiratsiooniretke toetajad</p>
+      </div>
+      <!-- End Title -->
+      <div class="max-w-6xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10 mx-auto">
+        <!-- Card Grid: 1 row, toetajad võrdselt keskele -->
+        <div class="flex justify-center items-center gap-8 flex-wrap">
+          <!-- LINK - Hawaii Express -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://www.hawaii.ee/" target="_blank" rel="noopener">
+            <div class="flex flex-col items-center text-center">
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/toetajad/hawaiiexpress.png" alt="Hawaii Express"
+                  class="py-4 sm:py-6 lg:py-10 w-40 h-auto md:w-48 lg:w-56 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+
+          <!-- LINK - MatkaSport -->
+          <a class="p-4 md:p-6 min-h-50 group relative overflow-hidden flex flex-col items-center text-center transition duration-200 hover:bg-gray-50 focus:bg-gray-100 hover:-translate-y-1 focus:-translate-y-1 cursor-pointer rounded-xl"
+            href="https://matkasport.ee/" target="_blank" rel="noopener">
+            <div class="flex flex-col items-center text-center">
+              <div class="mb-1 flex justify-center w-full sm:mb-2">
+                <img src="./public/assets/pildid/toetajad/matkasport.png" alt="MatkaSport"
+                  class="py-4 sm:py-6 lg:py-10 w-40 h-auto md:w-48 lg:w-56 mx-auto transition duration-200 group-hover:scale-105 group-focus:scale-105" />
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- End Card Grid -->
+      </div>
+    </div>
+    <!-- !SECTION: Toetajad -->
+
+    <!-- LINK - Raamatu banner -->
+    <div class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto" id="raamat">
+      <div class="relative h-60 sm:h-72 xl:h-80 overflow-hidden rounded-2xl shadow-none">
+        <!-- Taustpilt hämususe ja läbipaistvusega -->
+        <picture>
+          <!-- Mobiiliversioon -->
+          <source srcset="./public/assets/pildid/banner/raamat.png" media="(max-width: 640px)" type="image/webp">
+          <!-- Desktopiversioon -->
+          <source srcset="./public/assets/pildid/banner/raamat.png" type="image/webp">
+          <!-- Fallback (JPG) -->
+          <img class="absolute inset-0 w-full h-full object-cover brightness-100"
+            src="./public/assets/pildid/banner/raamat.png" alt="Inspiratsiooniretke raamat" />
+        </picture>
+
+        <!-- Sisu -->
+        <div class="relative z-10 flex flex-col justify-center items-center text-center h-full">
+          <p class="text-lg font-medium mb-2 text-gray-700">Inspiratsiooniretk.ee</p>
+
+          <h1 class="text-3xl md:text-5xl lg:text-5xl font-semibold mb-6">
+            Inspiratsiooniretke raamat
+          </h1>
+
+          <a class="py-3 px-6 text-lg font-semibold rounded-full shadow-md text-white" href="#meedia"
+            style=" background-color: #f97316;" onmouseover="this.style.backgroundColor='#f46711'"
+            onmouseout="this.style.backgroundColor='#f97316'" onmousedown="this.style.backgroundColor='#ef600f'"
+            onmouseup="this.style.backgroundColor='#f46711'">
+            Loe lähemalt
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINK - Footer -->
+    <footer class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+
+      <div class="py-6 border-t border-transparent">
+
+        <!-- Contact Info -->
+        <div class="text-center text-gray-500 text-sm mb-3">
+          <p>Inspiratsiooniretk.ee</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center mb-8 text-sm">
+          <a href="./et/tingimused/kasutustingimused.php"
+            class="text-gray-500 hover:hover:text-orange-500 mx-1 sm:mx-1">Kasutustingimused</a>
+          <span class="text-gray-300 mx-1">·</span>
+          <a href="./et/tingimused/privaatsustingimused.php"
+            class="text-gray-500 hover:hover:text-orange-500 mx-1 sm:mx-1">Privaatsustingimused</a>
+        </div>
+      </div>
+    </footer>
+
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script>
+    (async () => {
+      if (!window.d3 || !window.topojson) {
+        return;
+      }
+
+      const mapRoot = document.getElementById("journey-map");
+      const loader = document.getElementById("journey-map-loading");
+      if (!mapRoot || !loader) {
+        return;
+      }
+
+      const W = 960;
+      const H = 500;
+
+      const svg = d3.select("#journey-map")
+        .attr("viewBox", `0 0 ${W} ${H}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      const projection = d3.geoNaturalEarth1()
+        .scale(153)
+        .translate([W / 2, H / 2 - 20]);
+
+      const geoPath = d3.geoPath().projection(projection);
+
+      let world;
+      try {
+        world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      } catch (e) {
+        loader.textContent = "Viga kaardi laadimisel.";
+        return;
+      }
+
+      loader.style.opacity = "0";
+      setTimeout(() => loader.remove(), 600);
+
+      svg.append("defs")
+        .append("clipPath")
+        .attr("id", "journeyMapClip")
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", W)
+        .attr("height", H - 55);
+
+      const mapG = svg.append("g").attr("clip-path", "url(#journeyMapClip)");
+
+      mapG.append("path")
+        .datum({ type: "Sphere" })
+        .attr("class", "jm-sphere")
+        .attr("d", geoPath);
+
+      mapG.append("path")
+        .datum(topojson.feature(world, world.objects.land))
+        .attr("class", "jm-land")
+        .attr("d", geoPath);
+
+      mapG.append("path")
+        .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
+        .attr("class", "jm-border")
+        .attr("d", geoPath);
+
+      mapG.append("path")
+        .datum({ type: "Sphere" })
+        .attr("fill", "none")
+        .attr("stroke", "#1a3a6a")
+        .attr("stroke-width", 1.5)
+        .attr("d", geoPath);
+
+      function gcPoints(p1, p2, n = 60) {
+        const interp = d3.geoInterpolate(p1, p2);
+        return Array.from({ length: n + 1 }, (_, i) => interp(i / n));
+      }
+
+      function joinGC(pts, n = 40) {
+        const out = [];
+        for (let i = 0; i < pts.length - 1; i += 1) {
+          const seg = gcPoints(pts[i], pts[i + 1], n);
+          if (i === 0) {
+            out.push(...seg);
+          } else {
+            out.push(...seg.slice(1));
+          }
+        }
+        return out;
+      }
+
+      function animPathSeq(coords, cls, delay, dur) {
+        return new Promise((resolve) => {
+          const el = svg.append("path")
+            .datum({ type: "Feature", geometry: { type: "LineString", coordinates: coords } })
+            .attr("class", cls)
+            .attr("d", geoPath)
+            .attr("clip-path", "url(#journeyMapClip)");
+
+          const len = el.node().getTotalLength();
+          el.style("stroke-dasharray", len)
+            .style("stroke-dashoffset", len)
+            .transition()
+            .delay(delay)
+            .duration(dur)
+            .ease(d3.easeLinear)
+            .style("stroke-dashoffset", 0)
+            .on("end", resolve);
+        });
+      }
+
+      function showPin(lon, lat, labelTop, labelDate, cardDir = "right") {
+        const projected = projection([lon, lat]);
+        if (!projected) {
+          return;
+        }
+
+        const cx = projected[0];
+        const cy = projected[1];
+        const g = svg.append("g").style("opacity", 0);
+
+        const pr = 10;
+        const ps = 6;
+
+        g.append("path")
+          .attr("d", `M ${cx} ${cy + pr + 8}
+                      C ${cx - ps} ${cy + pr + 2}, ${cx - pr} ${cy + 4}, ${cx - pr} ${cy}
+                      A ${pr} ${pr} 0 1 1 ${cx + pr} ${cy}
+                      C ${cx + pr} ${cy + 4}, ${cx + ps} ${cy + pr + 2}, ${cx} ${cy + pr + 8} Z`)
+          .attr("fill", "#22c55e")
+          .attr("stroke", "none")
+          .style("filter", "drop-shadow(0 2px 8px rgba(34,197,94,0.5))");
+
+        g.append("circle")
+          .attr("cx", cx)
+          .attr("cy", cy)
+          .attr("r", 4)
+          .attr("fill", "white");
+
+        const cardW = 180;
+        const cardH = 48;
+        const offX = cardDir === "right" ? 18 : -(cardW + 18);
+        const offY = -(cardH / 2 + 8);
+
+        const cardG = g.append("g").attr("transform", `translate(${cx + offX}, ${cy + offY})`);
+        cardG.append("rect")
+          .attr("width", cardW)
+          .attr("height", cardH)
+          .attr("rx", 10)
+          .attr("fill", "rgba(10,28,58,0.88)")
+          .attr("stroke", "rgba(80,130,200,0.3)")
+          .attr("stroke-width", "1");
+
+        cardG.append("text")
+          .attr("class", "jm-card-title")
+          .attr("x", 12)
+          .attr("y", 19)
+          .text(labelTop);
+
+        cardG.append("text")
+          .attr("class", "jm-card-sub")
+          .attr("x", 12)
+          .attr("y", 35)
+          .text(labelDate);
+
+        g.transition().duration(400).style("opacity", 1);
+      }
+
+      const tallinn = [24.7, 59.4];
+      const marrakech = [-8.0, 31.6];
+      const martinique = [-61.0, 14.7];
+      const vancouver = [-123.1, 49.3];
+      const beijing = [116.4, 39.9];
+
+      const SEG_DUR = 1800;
+
+      showPin(24.7, 59.4, "Tallinn, Eesti", "10. juuni 2010", "right");
+
+      await animPathSeq(
+        joinGC([tallinn, [24.1, 56.9], [21, 52.2], [16.4, 48.2], [9.2, 45.5], [2.2, 41.4], [-3.7, 40.4], [-5.9, 37.4], [-5.8, 35.8], marrakech], 25),
+        "jm-route-land",
+        200,
+        SEG_DUR
+      );
+      showPin(-8.0, 31.6, "Marrakech, Maroko", "10. oktoober 2010", "right");
+
+      await animPathSeq(
+        joinGC([marrakech, [-9.1, 38.7], [-25, 32], [-45, 22], [-57, 16], martinique], 50),
+        "jm-route-sea",
+        0,
+        SEG_DUR
+      );
+      showPin(-61.0, 14.7, "Martinique", "10. veebruar 2011", "left");
+
+      await animPathSeq(
+        joinGC([
+          martinique,
+          [-61.4, 15.4],   // Dominica
+          [-61.6, 16.3],   // Guadeloupe
+          [-66.1, 18.2],   // Puerto Rico
+          [-70.5, 19.0],   // Hispaniola
+          [-77.4, 25.0],   // Bahamas
+          [-80.2, 25.8],   // Miami
+          [-92.3, 34.7],   // Arkansas (Little Rock)
+          [-115.1, 36.2],  // Las Vegas
+          [-122.4, 37.8],  // San Francisco
+          [-122.3, 47.6],  // Pacific Northwest
+          vancouver
+        ], 30),
+        "jm-route-land",
+        0,
+        SEG_DUR
+      );
+      showPin(-123.1, 49.3, "Vancouver, Kanada", "10. juuni 2011", "right");
+
+      await animPathSeq(
+        gcPoints(vancouver, beijing, 80),
+        "jm-route-sea",
+        0,
+        SEG_DUR
+      );
+      showPin(116.4, 39.9, "Peking, Hiina", "10. oktoober 2011", "left");
+
+      await animPathSeq(
+        joinGC([beijing, [106.9, 47.9], [92.8, 56], [60.6, 56.8], [37.6, 55.8], [30.3, 59.9], tallinn], 25),
+        "jm-route-land",
+        0,
+        SEG_DUR
+      );
+      showPin(24.7, 59.4, "Tallinn, Eesti", "10. veebruar 2012 ✓", "right");
+    })();
+  </script>
+
+  <!-- Vite entry -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
